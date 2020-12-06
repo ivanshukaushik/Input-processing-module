@@ -1,0 +1,172 @@
+ STRU CONTAINMENT
+    STRU MATE
+        NAME BET1
+        ARR PROGRESS
+        CP 869.207
+        DL 1.44704
+        EMI 1.0
+        RHO 2343.32
+        MESH 9
+        FAC 4.0
+    END
+    STRU COMP
+        NAME WATER
+        PHAS FLUID
+        MLMA 18.016
+        CP FUNCTION
+        DL FUNCTION
+        ETA FUNCTION
+    END
+    STRU COMP
+        NAME N2
+        PHAS GAS
+        MLMA 28.01
+        CDIF 2.0E-5
+        CSTD 0.0
+        CDIS 0.0
+        CP FUNCTION
+        DL FUNCTION
+        ETA FUNCTION
+    END
+    STRU COMP
+        NAME STEAM
+        PHAS GAS
+        MLMA 18.016
+        CDIF .58E-4
+        CSTD 0.0
+        CDIS 0.0
+        CP FUNCTION
+        DL FUNCTION
+        ETA FUNCTION
+    END
+    STRU COMP
+        NAME H2
+        PHAS GAS
+        MLMA 2.016
+        CDIF 6.11E-5
+        CSTD 0.0
+        CDIS 0.0
+        CP FUNCTION
+        DL FUNCTION
+        ETA FUNCTION
+    END
+    STRU COMP
+        NAME O2
+        PHAS GAS
+        MLMA 32.0
+        CDIF 2.0E-5
+        CSTD 0.0
+        CDIS 0.0
+        CP FUNCTION
+        DL FUNCTION
+        ETA FUNCTION
+    END
+    STRU COMP
+        NAME CO
+        PHAS GAS
+        MLMA 28.01
+        CDIF 2.0E-5
+        CSTD 0.0
+        CDIS 0.0
+        CP FUNCTION
+        DL FUNCTION
+        ETA FUNCTION
+    END
+    STRU COMP
+        NAME CO2
+        PHAS GAS
+        MLMA 44.01
+        CDIF 2.0E-5
+        CSTD 0.0
+        CDIS 0.0
+        CP FUNCTION
+        DL FUNCTION
+        ETA FUNCTION
+    END
+    STRU ZONE
+        NAME ENVIRON
+        MODE NONEQUIL
+        ROOM 2
+        STRU GEOM
+            VOLU 1.0E8
+            ELEV 100.0
+            SELE 0.0
+            ASUM 1000000.0
+        END
+        STRU INIT
+            STRU COND
+                COMP PRESS
+                VALU 1.013
+                UNIT BAR
+            END
+            STRU COND
+                COMP SATUR
+                UNIT '%'
+                VALU 40.0
+            END
+            STRU COND
+                COMP TEMP
+                VALU 25.0
+                UNIT C
+            END
+            STRU COND
+                COMP AIR
+                TYPE REST
+            END
+        END
+    END
+ END
+ STRU ZONE
+        NAME C1
+        MODE NONEQUIL
+        ROOM 1
+        STRU GEOM
+            VOLU 5.0E4
+            ELEV 50.0
+            SELE 0.0
+            ASUM 1000.0
+        END
+        STRU INIT
+            STRU COND
+                COMP PRESS
+                VALU 1.0
+                UNIT BAR
+            END
+            STRU COND
+                COMP SATUR
+                UNIT '%'
+                VALU 40.0
+            END
+            STRU COND
+                COMP TEMP
+                VALU 23.0
+                UNIT C
+            END
+            STRU COND
+                COMP AIR
+                TYPE REST
+            END
+        END
+    STRU CONN
+        NAME V2
+        FROM C1
+        TO ENVIRON
+        TYPE ATMOS_JUN
+        LEN 0.3
+        SECT 7.2E-6
+        ZETB 5.0
+        ZETE 5.0
+    END
+    STRU CONN
+        NAME V1
+        FROM C1
+        TO ENVIRON
+        TYPE RUPTURE
+        LEN 0.3
+        SECT 1.5
+        ZETB 5.0
+        ZETE 5.0
+        DPBE 4.bar
+        DPEB 4.bar
+    END
+END
